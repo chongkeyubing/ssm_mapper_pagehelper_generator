@@ -1,4 +1,4 @@
-package com.company.project.exception;
+package com.company.project.core;
 
 /**
  * @Author: 李宝刚
@@ -7,12 +7,9 @@ package com.company.project.exception;
  */
 public class AppException extends RuntimeException {
 
-    int code;
-
     public AppException(){}
 
-    public AppException(int code, String msg) {
+    public AppException(String msg) {
         super(msg);
-        this.code = code;
     }
 }

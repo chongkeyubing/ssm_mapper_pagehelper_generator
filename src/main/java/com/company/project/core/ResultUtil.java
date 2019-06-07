@@ -1,27 +1,38 @@
 package com.company.project.core;
 
 /**
- * 响应结果生成工具
+ * @Author: 李宝刚
+ * @Date: 2019-06-06 23:40
+ * @Description ajax响应结果生成工具
  */
-public class ResultGenerator {
-    private static final String DEFAULT_SUCCESS_MESSAGE = "SUCCESS";
+public class ResultUtil {
 
-    public static Result genSuccessResult() {
-        return new Result()
-                .setCode(ResultCode.SUCCESS)
-                .setMessage(DEFAULT_SUCCESS_MESSAGE);
+    private static final int SUCCESS_CODE = 0;
+    private static final int FAIL_CODE = -1;
+    private static final String DEFAULT_SUCCESS_MESSAGE = "success";
+
+    public static Result success() {
+        Result result = new Result();
+        result.setCode(SUCCESS_CODE);
+        result.setSuccess(true);
+        result.setMessage(DEFAULT_SUCCESS_MESSAGE);
+        return result;
     }
 
-    public static <T> Result<T> genSuccessResult(T data) {
-        return new Result()
-                .setCode(ResultCode.SUCCESS)
-                .setMessage(DEFAULT_SUCCESS_MESSAGE)
-                .setData(data);
+    public static <T> Result<T> success(T data) {
+        Result<T> result = new Result<>();
+        result.setCode(SUCCESS_CODE);
+        result.setSuccess(true);
+        result.setMessage(DEFAULT_SUCCESS_MESSAGE);
+        result.setData(data);
+        return result;
     }
 
-    public static Result genFailResult(String message) {
-        return new Result()
-                .setCode(ResultCode.FAIL)
-                .setMessage(message);
+    public static Result fail(String message) {
+        Result result = new Result();
+//        result.setCode(FAIL_CODE);
+//        result.setSuccess(false);
+//        result.setMessage(message);
+        return result;
     }
 }
