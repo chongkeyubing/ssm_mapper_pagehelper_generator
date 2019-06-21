@@ -26,21 +26,16 @@ public class GlobalExceptionHandler implements HandlerExceptionResolver {
             Result result;
             if (e instanceof AppException) {//业务失败的异常
                 result = ResultUtil.fail(e.getMessage());
-            } else if (e instanceof NoHandlerFoundException) {
-                result = ResultUtil.fail("接口 [" + request.getRequestURI() + "] 不存在");
-            } else if (e instanceof ServletException) {
-                result = ResultUtil.fail(e.getMessage());
             } else {
-                result = ResultUtil.fail("接口 [" + request.getRequestURI() + "] 内部错误，请联系管理员");
+                result = ResultUtil.fail("接口 [" + request.getRequestURI() + "] 内部错误:" + e.getMessage());
             }
             responseResult(response, result); //输出json,不会再跳转到视图
         } else {  //如果是页面请求
+            mv.setViewName("error");      //跳转到错误页面
             if (e instanceof AppException) {
                 mv.addObject("msg", e.getMessage());
-                mv.setViewName("error");      //跳转到错误页面
             } else {
-                mv.addObject("msg", "系统内部错误，请联系管理员");
-                mv.setViewName("error");
+                mv.addObject("msg", "系统内部错误:" + e.getMessage());
             }
         }
         return mv;

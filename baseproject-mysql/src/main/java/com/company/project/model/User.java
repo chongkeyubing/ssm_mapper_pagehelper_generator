@@ -3,6 +3,7 @@ package com.company.project.model;
 import java.util.Date;
 import javax.persistence.*;
 
+@Table(name = "t_user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

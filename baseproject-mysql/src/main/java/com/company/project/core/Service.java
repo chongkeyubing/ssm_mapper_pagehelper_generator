@@ -18,7 +18,7 @@ public interface Service<T> {
 
     List<T> findAll();//无条件查询所有
 
-    int findCount(T model); //据实体属性查询总数，条件是等号
+    int findCount(T model); //根据据实体属性查询总数，条件是等号
 
     int findCountByCondition(Condition condition);//根据条件查询总数
 
@@ -32,8 +32,8 @@ public interface Service<T> {
 
     void deleteByCondition(Condition conditon);//根据条件删除
 
-    void update(T model);//根据主键更新属性不为null的值
+    void update(T model);//根据主键更新属性不为null和""的值
 
-    void updateByCondition(T model, Condition condition);//根据Condition条件更新实体model包含的不是null的属性值
+    void updateByCondition(T model, Condition condition);//根据Condition条件更新实体model包含的不是null和""的属性值
 
 }

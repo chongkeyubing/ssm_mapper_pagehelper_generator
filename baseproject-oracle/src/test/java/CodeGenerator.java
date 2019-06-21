@@ -52,12 +52,11 @@ public class CodeGenerator {
     /**
      * 通过数据表名称生成代码，Model 名称通过解析数据表名称获得，下划线转大驼峰的形式。
      * 如输入表名称 "t_user_detail" 将生成 TUserDetail、TUserDetailMapper、TUserDetailService ...
-     * @param tableNames 数据表名称...
+     * @param tableName 数据表名称...
      */
-    public static void genCode(String... tableNames) {
-        for (String tableName : tableNames) {
+    public static void genCode(String tableName) {
             genCodeByCustomModelName(tableName, null);
-        }
+
     }
 
     /**
@@ -199,7 +198,7 @@ public class CodeGenerator {
             data.put("date", DATE);
             data.put("author", AUTHOR);
             String modelNameUpperCamel = StringUtils.isEmpty(modelName) ? tableNameConvertUpperCamel(tableName) : modelName;
-            data.put("baseRequestMapping", modelNameConvertMappingPath(modelNameUpperCamel));
+            data.put("baseRequestMapping", "/" + modelNameUpperCamel.toLowerCase());
             data.put("modelNameUpperCamel", modelNameUpperCamel);
             data.put("modelNameLowerCamel", CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_CAMEL, modelNameUpperCamel));
             data.put("basePackage", BASE_PACKAGE);
@@ -235,15 +234,15 @@ public class CodeGenerator {
 
     }
 
-    private static String tableNameConvertMappingPath(String tableName) {
-        tableName = tableName.toLowerCase();//兼容使用大写的表名
-        return "/" + (tableName.contains("_") ? tableName.replaceAll("_", "/") : tableName);
-    }
-
-    private static String modelNameConvertMappingPath(String modelName) {
-        String tableName = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, modelName);
-        return tableNameConvertMappingPath(tableName);
-    }
+//    private static String tableNameConvertMappingPath(String tableName) {
+//        tableName = tableName.toLowerCase();//兼容使用大写的表名
+//        return "/" + (tableName.contains("_") ? tableName.replaceAll("_", "/") : tableName);
+//    }
+//
+//    private static String modelNameConvertMappingPath(String modelName) {
+//        String tableName = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, modelName);
+//        return tableNameConvertMappingPath(tableName);
+//    }
 
     private static String packageConvertPath(String packageName) {
         return String.format("/%s/", packageName.contains(".") ? packageName.replaceAll("\\.", "/") : packageName);
