@@ -34,11 +34,8 @@ public class ResultUtil {
         Result result = new Result();
         result.setCode(FAIL_CODE);
         result.setSuccess(false);
-        result.setMessage(null);
+        result.setMessage(message);
         return result;
     }
 
-    public static void main(String[] args) {
-        System.out.println(StringUtils.isBlank("s"));
-}
 }

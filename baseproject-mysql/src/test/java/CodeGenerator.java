@@ -38,7 +38,7 @@ public class CodeGenerator {
 
     public static void main(String[] args) {
         //genCode("t_user");
-        genCodeByCustomModelName("t_user","User");
+        genCodeByCustomModelName("dept","Dept");
     }
 
     /**

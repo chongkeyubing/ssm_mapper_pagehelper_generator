@@ -3,7 +3,6 @@ package com.company.project.model;
 import java.util.Date;
 import javax.persistence.*;
 
-@Table(name = "t_user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,8 +12,7 @@ public class User {
 
     private String password;
 
-    @Column(name = "nick_name")
-    private String nickName;
+    private String email;
 
     private Integer sex;
 
@@ -67,17 +65,17 @@ public class User {
     }
 
     /**
-     * @return nick_name
+     * @return email
      */
-    public String getNickName() {
-        return nickName;
+    public String getEmail() {
+        return email;
     }
 
     /**
-     * @param nickName
+     * @param email
      */
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     /**
@@ -120,5 +118,18 @@ public class User {
      */
     public void setDeptId(Integer deptId) {
         this.deptId = deptId;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", sex=" + sex +
+                ", registerDate=" + registerDate +
+                ", deptId=" + deptId +
+                '}';
     }
 }
