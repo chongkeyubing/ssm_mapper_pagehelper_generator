@@ -107,6 +107,17 @@ public abstract class AbstractService<T> implements Service<T> {
         return mapper.selectByPrimaryKey(id);
     }
 
+
+    /**
+     * 根据条件查询单挑数据
+     *
+     * @param model
+     * @return
+     */
+    public T findOne(T model) {
+        return mapper.selectOne(model);
+    }
+
     /**
      * 根据主键字符串进行查询,条件是等号，主键字符串为“1,2，3,4...”
      *
